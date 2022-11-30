@@ -1,6 +1,7 @@
 package com.plantavida.back.domain.entities;
 
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
