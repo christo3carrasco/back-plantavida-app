@@ -1,7 +1,9 @@
 package com.plantavida.back.infrastructure;
 
-import com.plantavida.back.domain.entities.Publication;
-import com.plantavida.back.domain.entities.Gallery;
+import com.plantavida.back.domain.entities.Event;
+import com.plantavida.back.domain.entities.Role;
+import com.plantavida.back.domain.entities.User;
+import com.plantavida.back.domain.entities.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -45,8 +47,10 @@ public class PlantaVidaInfrastructureConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSourse());
 
-        entityManagerFactory.setPackagesToScan(Publication.class.getPackage().getName());
-        entityManagerFactory.setPackagesToScan(Gallery.class.getPackage().getName());
+        entityManagerFactory.setPackagesToScan(Event.class.getPackage().getName());
+        entityManagerFactory.setPackagesToScan(Role.class.getPackage().getName());
+        entityManagerFactory.setPackagesToScan(User.class.getPackage().getName());
+        entityManagerFactory.setPackagesToScan(Volunteer.class.getPackage().getName());
 
         HibernateJpaVendorAdapter hibernateJpa = new HibernateJpaVendorAdapter();
         hibernateJpa.setDatabase(Database.POSTGRESQL);
