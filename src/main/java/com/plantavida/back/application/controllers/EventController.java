@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface EventController {
     @PreAuthorize("hasRole('ADMIN_ROLE')")
     @PostMapping(value = "/event", produces = {"application/json"}, consumes = {"application/json"})
-    Event postEvent(@RequestBody Event event);
+    Event postEvent(@RequestBody EventDTO eventDTO);
 
     @GetMapping(value = "/event", produces = {"application/json"})
     List<Event> getEvent();

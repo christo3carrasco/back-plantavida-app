@@ -19,7 +19,14 @@ public class EventControllerImpl implements EventController {
     private EventService eventService;
 
     @Override
-    public Event postEvent(Event event) {
+    public Event postEvent(EventDTO eventDTO) {
+        Event event = new Event();
+        event.setId(eventDTO.getId());
+        event.setName(eventDTO.getName());
+        event.setPlace(eventDTO.getPlace());
+        event.setTimeEv(eventDTO.getTimeEv());
+        event.setDateEv(eventDTO.getDateEv());
+        event.setStatus(eventDTO.getStatus());
         return eventService.createEvent(event);
     }
 

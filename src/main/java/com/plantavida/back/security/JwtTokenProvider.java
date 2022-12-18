@@ -20,9 +20,8 @@ public class JwtTokenProvider {
         String username = authentication.getName();
         Date dateNow = new Date();
         Date dateExp = new Date(dateNow.getTime() + jwtExpirationInMs);
-        String token = Jwts.builder().setSubject(username).setIssuedAt(new Date()).setExpiration(dateExp)
+        return Jwts.builder().setSubject(username).setIssuedAt(new Date()).setExpiration(dateExp)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
-        return token;
     }
 
     public String getUserFromJwt(String token) {

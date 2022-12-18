@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface VolunteerController {
     @PostMapping(value = "/volunteer", produces = {"application/json"}, consumes = {"application/json"})
-    Volunteer postVolunteer(@RequestBody Volunteer volunteer);
+    Volunteer postVolunteer(@RequestBody VolunteerDTO volunteerDTO);
 
     @GetMapping(value = "/volunteer", produces = {"application/json"})
     List<Volunteer> getVolunteer();

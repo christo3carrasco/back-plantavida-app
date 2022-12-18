@@ -21,7 +21,13 @@ public class VolunteerControllerImpl implements VolunteerController {
     private VolunteerService volunteerService;
 
     @Override
-    public Volunteer postVolunteer(Volunteer volunteer) {
+    public Volunteer postVolunteer(VolunteerDTO volunteerDTO) {
+        Volunteer volunteer = new Volunteer();
+        volunteer.setId(volunteerDTO.getId());
+        volunteer.setEvent(volunteerDTO.getEvent());
+        volunteer.setUser(volunteerDTO.getUser());
+        volunteer.setConfirmed(volunteerDTO.getConfirmed());
+        volunteer.setAssistance(volunteerDTO.getAssistance());
         return volunteerService.createVolunteer(volunteer);
     }
 

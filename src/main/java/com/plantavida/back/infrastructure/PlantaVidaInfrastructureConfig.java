@@ -26,6 +26,8 @@ import java.util.Properties;
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("com.plantavida.back.infrastructure.repositories")
 public class PlantaVidaInfrastructureConfig {
+    private static final String HIB_SHOW_SQL = "hibernate.show_sql";
+
     @Autowired
     private Environment env;
 
@@ -36,9 +38,6 @@ public class PlantaVidaInfrastructureConfig {
         dataSourse.setUrl(env.getProperty("db.url"));
         dataSourse.setUsername(env.getProperty("db.username"));
         dataSourse.setPassword(env.getProperty("db.password"));
-        System.out.print(env.getProperty("db.username"));
-        System.out.print(env.getProperty("db.password"));
-        System.out.print(env.getProperty("db.url"));
         return dataSourse;
     }
 
@@ -56,12 +55,12 @@ public class PlantaVidaInfrastructureConfig {
         hibernateJpa.setDatabase(Database.POSTGRESQL);
         hibernateJpa.setDatabasePlatform(env.getProperty("hibernate.dialect"));
         hibernateJpa.setGenerateDdl(Boolean.TRUE.equals(env.getProperty("hibernate.generateDdl", Boolean.class)));
-        hibernateJpa.setShowSql(Boolean.TRUE.equals(env.getProperty("hibernate.show_sql", Boolean.class)));
+        hibernateJpa.setShowSql(Boolean.TRUE.equals(env.getProperty(HIB_SHOW_SQL, Boolean.class)));
         entityManagerFactory.setJpaVendorAdapter(hibernateJpa);
 
         Properties jpaProperties = new Properties();
         jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-        jpaProperties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        jpaProperties.put(HIB_SHOW_SQL, env.getProperty(HIB_SHOW_SQL));
         jpaProperties.put("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
         entityManagerFactory.setJpaProperties(jpaProperties);
         return entityManagerFactory;
